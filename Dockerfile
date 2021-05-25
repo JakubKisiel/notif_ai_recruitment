@@ -15,3 +15,5 @@ RUN pip install -r ../requirements.txt
 USER nobody
 
 COPY ./app .
+
+WORKDIR /usr/src
