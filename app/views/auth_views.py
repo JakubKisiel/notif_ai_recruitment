@@ -41,12 +41,12 @@ async def login(response: Response,
     return access_token
 
 @auth_router.post("/logout", status_code=200)
-async def logout(response: Response, acces_token: Optional[str] = Cookie(None)):
-    if not acces_token:
+async def logout(response: Response, access_token: Optional[str] = Cookie(None)):
+    if not access_token or access_token == "":
         response.status_code=204
         return "User not logged in"
-    await delete_token(acces_token)
-    response.set_cookie(key="acces_token", value="")
+    await delete_token(access_token)
+    response.set_cookie(key="access_token", value="")
     return "Happily logged out"
 
 @auth_router.delete("/delete_user", status_code=200)
