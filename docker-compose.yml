@@ -8,8 +8,28 @@ services:
     volumes: 
       - ./db/postgres:/var/lib/postgresql/data
       - ./db/migrations:/docker-entrypoint-initdb.d
+    networks:
+      - api
     ports: 
       - "55432:5432"
+
+  fastapi:
+    build: .
+    environment:
+      SQLALCHEMY_DATABASE_URL: "postgresql://Daft:Daft@db:5432/postgres"
+
+    command: uvicorn main:app --workers 1 --host 0.0.0.0 --port 80
+    volumes: 
+      - ./app:/usr/src/app
+    networks:
+      - api
+    ports: 
+      - "8001:80"
+
+networks:
+  api:
+
 volumes:
   db:
+  fastapi:
     
