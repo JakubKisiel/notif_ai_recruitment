@@ -16,7 +16,7 @@ auth_router.token_storage : Set = set()
 
 
 @auth_router.put("/register", status_code = 201)
-async def register(user_registration: RegisterUser, db: Session = Depends(get_db)):
+async def register(user_registration: RegisterUser = Depends(), db: Session = Depends(get_db)):
     check = await check_if_user_exists(db, user_registration.username)
     if check != 0:
         raise HTTPException(status_code=409, detail="User already exists in Database")
