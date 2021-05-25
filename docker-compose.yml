@@ -5,7 +5,9 @@ services:
     environment: 
       POSTGRES_USER: Daft
       POSTGRES_PASSWORD: Daft
-    volumes: postgres:/var/lib/postgresql/data
+    volumes: 
+      - ./db/postgres:/var/lib/postgresql/data
+      - ./db/migrations:/docker-entrypoint-initdb.d
     ports: 
       - "55432:5432"
 volumes:
