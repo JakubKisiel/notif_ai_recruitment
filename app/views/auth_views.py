@@ -4,7 +4,7 @@ from app.schemas import RegisterUser, User
 from app.crud import check_if_user_exists, login_user, register_user, delete_user
 from app.database import get_db
 from app.helper import generate_hash, generate_salt
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordBearer
 from typing import Set, Optional
 import jwt
 
@@ -17,6 +17,7 @@ auth_router.token_storage : Set = set()
 
 @auth_router.put("/register", status_code = 201)
 async def register(user_registration: RegisterUser = Depends(), db: Session = Depends(get_db)):
+    """Endpoint for registering user"""
     check = await check_if_user_exists(db, user_registration.username)
     if check != 0:
         raise HTTPException(status_code=409, detail="User already exists in Database")
@@ -30,6 +31,7 @@ async def register(user_registration: RegisterUser = Depends(), db: Session = De
 async def login(response: Response,
         user_login: RegisterUser = Depends(), 
         db: Session = Depends(get_db)):
+    """Endpoint for logging in that gives access_token"""
     user = await auth_user(db, user_login.username, user_login.password)
     if not user:
         raise HTTPException(status_code=406, 
@@ -42,6 +44,7 @@ async def login(response: Response,
 
 @auth_router.post("/logout", status_code=200)
 async def logout(response: Response, access_token: Optional[str] = Cookie(None)):
+    """Endpoint for logging user out and removing access_token"""
     if not access_token or access_token == "":
         response.status_code=204
         return "User not logged in"
@@ -66,12 +69,12 @@ async def auth_user(db: Session, username: str, password: str):
         return False
     return user_record
 
-@auth_router.post("/check_cookie", status_code=200)
-def check_cookie(acces_token: Optional[str]= Cookie(None)):
+def check_cookie(access_token: Optional[str]= Cookie(None)):
     """Checks if cookie is ok"""
-    if not acces_token or acces_token not in auth_router.token_storage:
+    if not access_token or access_token not in auth_router.token_storage:
         raise HTTPException(status_code=401, 
                 detail="You're not authorized or session ended")
+    return access_token
 
 async def store_token(token: str):
     if token not in auth_router.token_storage:
@@ -90,10 +93,10 @@ async def decode_token_id(token:str):
     except:
         raise HTTPException(status_code=401, detail="Don't mess with a token")
 
-async def get_id_from_token(token: str):
+async def get_id_from_token(token: str) -> int:
     try:
         payload = await decode_token_id(token)
-        return payload.get('id')
+        return int(str(payload.get('iduser')))
     except:
         raise HTTPException(status_code=401, detail="Don't mess with a token")
 

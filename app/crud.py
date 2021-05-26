@@ -32,6 +32,43 @@ async def get_all_posts(db: Session):
     return db.query(models.Post).order_by(models.Post.idpost).all()
 
 async def get_post(db: Session, id: int):
-    return db.query(models.Post)\
+    post = db.query(models.Post)\
             .filter(models.Post.idpost == id)\
             .first()
+    if post:
+        post.viewscounter += 1
+        db.commit()
+    return post
+
+
+async def insert_post(db:Session, post_content: str, iduser: int):
+    new_post = models.Post(
+            postcontent = post_content,
+            iduser = iduser
+            )
+    db.add(new_post)
+    db.flush()
+    id = new_post.idpost
+    db.commit()
+    return id
+
+async def get_post_iduser(db: Session, idpost:int):
+    return db.query(models.Post)\
+            .filter(models.Post.idpost == idpost)\
+            .first()
+
+async def update_post(db: Session, post_content: str,idpost:int):
+    post = db.query(models.Post)\
+            .filter(models.Post.idpost == idpost)\
+            .first()
+    if post:
+        post.viewscounter = 0
+        post.postcontent = post_content
+        db.commit()
+    return post
+
+async def delete_post(db: Session, idpost: int):
+    db.query(models.Post)\
+            .filter(models.Post.idpost == idpost)\
+            .delete()
+    db.commit()
