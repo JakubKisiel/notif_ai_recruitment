@@ -5,6 +5,7 @@ services:
     environment: 
       POSTGRES_USER: Daft
       POSTGRES_PASSWORD: Daft
+    command: pg_restore -U Daft -p 5432 -h localhost -d postgres -1 /docker-entrypoint-initdb.d/posts.sql
     volumes: 
       - ./db/postgres:/var/lib/postgresql/data
       - ./db/migrations:/docker-entrypoint-initdb.d
