@@ -21,7 +21,7 @@ https://notifyairecruitment.herokuapp.com/docs
 
 Example:
 `curl -X PUT 'localhost:8001/register?username=DaftAi&password=DaftAi' -D -`
-https://notifyairecruitment.herokuapp.com/register/username=DaftAi&password=DaftAi
+https://notifyairecruitment.herokuapp.com/register?username=DaftAi&password=DaftAi
 now this link will create new user if there isn't already one with the same username
 
 ### Response
@@ -51,7 +51,7 @@ content-type: application/json
 /login endpoint accepts only POST method and also needs username and password as query params
 Example:
 `curl -X POST 'localhost:8001/login?username=DaftAi&password=DaftAi' -D -`
-https://notifyairecruitment.herokuapp.com/login/username=DaftAi&password=DaftAi
+https://notifyairecruitment.herokuapp.com/login?username=DaftAi&password=DaftAi
 This will result in returing jwt as response as also setting access_token cookie
 
 ### Response
