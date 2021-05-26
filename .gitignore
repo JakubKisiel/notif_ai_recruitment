@@ -1,4 +1,5 @@
 venv
 devreq.txt
-db/postgres
+db/postgres/*
+!db/postgres/.gitkeep
 
