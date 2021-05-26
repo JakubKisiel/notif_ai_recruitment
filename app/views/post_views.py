@@ -54,8 +54,8 @@ async def delet_post_in_db(id: int,
     and you can only delete your own posts
     """
     await check_access_and_availability(db, access_token, id)
-    post = await delete_post(db,id)
-    return ShowPost.from_orm(post)
+    await delete_post(db,id)
+    return {"message": "post deleted"}
 
 
 def check_post_len(post_content: PostContent):

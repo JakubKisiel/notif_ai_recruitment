@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from .views.post_views import post_router
-from .views.auth_views import auth_router
+from app.views.post_views import post_router
+from app.views.auth_views import auth_router
 
 app = FastAPI()
 
