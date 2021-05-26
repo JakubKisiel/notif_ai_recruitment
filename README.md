@@ -9,7 +9,7 @@ For ease of deployment use docker-compose
 `docker-compose up`
 If you can't find relations in db use
 password for user Daft is Daft
-`pg_restore -U Daft -p 55432 -h localhost -d postgres -1 db/migrations/posts.sql`
+`pg_restore -U Daft -p 55432 -h localhost -d postgres -1 db/dumps/posts.sql`
 
 App will start listening on localhost:8001
 Postgres db will listen on localhost:55432
