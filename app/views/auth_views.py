@@ -47,10 +47,11 @@ async def logout(response: Response, access_token: Optional[str] = Cookie(None))
     """Endpoint for logging user out and removing access_token"""
     if not access_token or access_token == "":
         response.status_code=204
-        return "User not logged in"
+        return{"detail": "User not logged in"}
     await delete_token(access_token)
     response.set_cookie(key="access_token", value="")
-    return "Happily logged out"
+    response.delete_cookie(key="access_token")
+    return {"detail":"Happily logged out"}
 
 @auth_router.delete("/delete_user", status_code=200)
 async def delete_user_endpoint(username: str, db: Session = Depends(get_db)):
