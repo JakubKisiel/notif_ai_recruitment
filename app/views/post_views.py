@@ -74,7 +74,7 @@ async def check_access_and_availability(db: Session,
                 detail="This post doesn't exist")
     if check_access.iduser != iduser:
         raise HTTPException( status_code=401,
-                detail="Cannot delete this post")
+                detail="Cannot modify this post")
     return iduser
 
 

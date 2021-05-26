@@ -13,6 +13,8 @@ Postgres db will listen on localhost:55432
 
 # API specs
 
+https://notifyairecruitment.herokuapp.com/docs
+
 ## /register
 
 /register endpoint accepts only PUT method needs username and password query params
@@ -139,10 +141,11 @@ content-type: application/json
 
 ## /post PUT
 
-These one inserts post into db and requires access*token cookie and json message with postcontent key
+These one inserts post into db and requires access\*token cookie and json message with postcontent key
 accepts only values between 1 to 160 chars
 https://notifyairecruitment.herokuapp.com/post
-curl -X PUT 'localhost:8001/post' -D - -H 'Cookie: access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH*-ZaejR4' -H 'Content-Type: application/json' -d '{"postcontent": "text"}'
+
+- curl -X PUT 'localhost:8001/post' -D - -H 'Cookie: access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH\*-ZaejR4' -H 'Content-Type: application/json' -d '{"postcontent": "text"}'
 
 ### Valid request response
 
@@ -154,7 +157,7 @@ content-type: application/json
 
 {"idpost":20}
 
-curl -X PUT 'localhost:8001/post' -D - -H 'Cookie: access*token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH*-ZaejR4' -H 'Content-Type: application/json' -d '{"postcontent": ""}'
+- curl -X PUT 'localhost:8001/post' -D - -H 'Cookie: access*token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH*-ZaejR4' -H 'Content-Type: application/json' -d '{"postcontent": ""}'
 
 ### When request values isn't desired length
 
@@ -166,7 +169,7 @@ content-type: application/json
 
 {"detail":"Post need to be between 1 and 160 chars long"}
 
-curl -X PUT 'localhost:8001/post' -D - -H 'Cookie: access*token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH*-Zae4' -H 'Content-Type: application/json' -d '{"postcontent": "fdas"}'
+- curl -X PUT 'localhost:8001/post' -D - -H 'Cookie: access*token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH*-Zae4' -H 'Content-Type: application/json' -d '{"postcontent": "fdas"}'
 
 ### When unable to authorize
 
@@ -181,8 +184,58 @@ content-type: application/json
 ## /post/{id} PATCH
 
 These one updates record in db but except cookie and json content it also needs id for the specified post
-When invalid responses are the same as in PUT Method
 
 https://notifyairecruitment.herokuapp.com/post
 
-###
+- curl -X PATCH 'localhost:8001/post/20' -D - -H 'Cookie: access*token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH*-ZaejR4' -H 'Content-Type: application/json' -d '{"postcontent": "t"}'
+
+### Response when request is valid
+
+HTTP/1.1 200 OK
+date: Wed, 26 May 2021 02:20:37 GMT
+server: uvicorn
+content-length: 36
+content-type: application/json
+
+{"postcontent":"t","viewscounter":0}
+
+- curl -X PATCH 'localhost:8001/post/3' -D - -H 'Cookie: access*token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH*-ZaejR4' -H 'Content-Type: application/json' -d '{"postcontent": "t"}'
+
+### Response when id of creator doesn't match with the id from access_token
+
+HTTP/1.1 401 Unauthorized
+date: Wed, 26 May 2021 02:21:37 GMT
+server: uvicorn
+content-length: 36
+content-type: application/json
+
+{"detail":"Cannot modify this post"}
+
+- curl -X PATCH 'localhost:8001/post/9321' -D - -H 'Cookie: access*token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH*-ZaejR4' -H 'Content-Type: application/json' -d '{"postcontent": "t"}'
+
+### Response when there's no post with matching id
+
+HTTP/1.1 404 Not Found
+date: Wed, 26 May 2021 02:24:06 GMT
+server: uvicorn
+content-length: 36
+content-type: application/json
+
+{"detail":"This post doesn't exist"}
+
+##/post{id} DELETE
+this needs access_token and id of a post
+When request is invalid the same responses as with PATCH method
+https://notifyairecruitment.herokuapp.com/post
+
+- curl -X DELETE 'localhost:8001/post/20' -D - -H 'Cookie: access*token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZHVzZXIiOjM3LCJ1c2VybmFtZSI6IkRhZnRBaSIsImhhc2hlZHBhc3N3b3JkIjoiOTYwOTIzZGU5NWFiOWMzMDJhNTVmNmZkYjIyYWVjZWE5ZmUxNThhYmNhNTM0ZmVjNzgyOTdhM2QzNTE0NGI4YSIsInBhc3N3b3Jkc2FsdCI6IjNHRjREamVRNTV1UEtLbXYifQ.oWmBfGzKYmvok7vAoeoUhv7ygX0_YcykWJH*-ZaejR4'
+
+### Valid request response
+
+HTTP/1.1 200 OK
+date: Wed, 26 May 2021 02:27:09 GMT
+server: uvicorn
+content-length: 26
+content-type: application/json
+
+{"message":"post deleted"}
